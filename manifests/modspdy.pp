@@ -89,14 +89,14 @@ class nyholm::faster_apache::modspdy (
   }
 
   file { "${nyholm::faster_apache::params::confd_dir}/spdy.conf":
-    content => template("${module_name}/apache/mod/spdy/spdy_conf.erb"),
+    content => template("spdy/spdy_conf.erb"),
     ensure  => $ensure,
     purge   => false,
     require => Package[$package]
   }
 
   file { '/usr/local/bin/php-wrapper':
-    content => template("${module_name}/apache/mod/spdy/php-wrapper.erb"),
+    content => template("spdy/php-wrapper.erb"),
     ensure  => $ensure,
     mode    => 0775,
     purge   => false,
