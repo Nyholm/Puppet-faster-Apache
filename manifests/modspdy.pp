@@ -47,8 +47,8 @@ class nyholm::faster_apache::modspdy (
   }
 
   $download_location = $::osfamily ? {
-    'Debian' => '/.puphpet-stuff/mod-spdy.deb',
-    'Redhat' => '/.puphpet-stuff/mod-spdy.rpm'
+    'Debian' => '/tmp/mod-spdy.deb',
+    'Redhat' => '/tmp/mod-spdy.rpm'
   }
 
   $provider = $::osfamily ? {
@@ -89,14 +89,14 @@ class nyholm::faster_apache::modspdy (
   }
 
   file { "${nyholm::faster_apache::params::confd_dir}/spdy.conf":
-    content => template("spdy/spdy_conf.erb"),
+    content => template("nyholm/spdy/spdy_conf.erb"),
     ensure  => $ensure,
     purge   => false,
     require => Package[$package]
   }
 
   file { '/usr/local/bin/php-wrapper':
-    content => template("spdy/php-wrapper.erb"),
+    content => template("nyholm/spdy/php-wrapper.erb"),
     ensure  => $ensure,
     mode    => 0775,
     purge   => false,
