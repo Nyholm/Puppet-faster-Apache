@@ -8,8 +8,8 @@ class nyholm::faster_apache::modpagespeed (
 
 
   $download_location = $::osfamily ? {
-    'Debian' => '/tmp/nyholm/mod-pagespeed.deb',
-    'Redhat' => '/tmp/nyholm/mod-pagespeed.rpm'
+    'Debian' => '/tmp/mod-pagespeed.deb',
+    'Redhat' => '/tmp/mod-pagespeed.rpm'
   }
 
   $provider = $::osfamily ? {

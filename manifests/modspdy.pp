@@ -1,9 +1,9 @@
 # This depends on puppetlabs/apache: https://github.com/puppetlabs/puppetlabs-apache
 
 class nyholm::faster_apache::modspdy (
-  $url     = $nyholm::faster_nyholm::faster_apache::params::apache_mod_spdy_url,
-  $package = $nyholm::faster_nyholm::faster_apache::params::apache_mod_spdy_package,
-  $phpcgi  = $nyholm::faster_nyholm::faster_apache::params::apache_mod_spdy_cgi,
+  $url     = $nyholm::faster_apache::params::apache_mod_spdy_url,
+  $package = $nyholm::faster_apache::params::apache_mod_spdy_package,
+  $phpcgi  = $nyholm::faster_apache::params::apache_mod_spdy_cgi,
   $ensure  = 'present'
 ) {
 
