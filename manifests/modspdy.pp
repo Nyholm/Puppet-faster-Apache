@@ -7,10 +7,6 @@ class nyholm::faster_apache::modspdy (
   $ensure  = 'present'
 ) {
 
-  class { 'apache::mod::php':
-    package_ensure => 'purged'
-  }
-
   if $::osfamily == 'Debian' {
     if ! defined(Package['php5-cgi']) {
       package { 'php5-cgi':
