@@ -38,10 +38,6 @@ class nyholm::faster_apache::modspdy (
     class { 'apache::mod::fcgid': }
   }
 
-  if ! defined(Class['apache::mod::cgi']) {
-    class { 'apache::mod::cgi': }
-  }
-
   $download_location = $::osfamily ? {
     'Debian' => '/tmp/mod-spdy.deb',
     'Redhat' => '/tmp/mod-spdy.rpm'
