@@ -1,9 +1,9 @@
 # This depends on puppetlabs/apache: https://github.com/puppetlabs/puppetlabs-apache
 
-class nyholm::faster_apache::modspdy (
-  $url     = $nyholm::faster_apache::params::apache_mod_spdy_url,
-  $package = $nyholm::faster_apache::params::apache_mod_spdy_package,
-  $phpcgi  = $nyholm::faster_apache::params::apache_mod_spdy_cgi,
+class faster_apache::modspdy (
+  $url     = $faster_apache::params::apache_mod_spdy_url,
+  $package = $faster_apache::params::apache_mod_spdy_package,
+  $phpcgi  = $faster_apache::params::apache_mod_spdy_cgi,
   $ensure  = 'present'
 ) {
 
@@ -63,32 +63,32 @@ class nyholm::faster_apache::modspdy (
   }
 
   file { [
-    "${nyholm::faster_apache::params::mod_dir}/spdy.load",
-    "${nyholm::faster_apache::params::mod_dir}/spdy.conf",
-    "${nyholm::faster_apache::params::mod_dir}/php5filter.conf"
+    "${faster_apache::params::mod_dir}/spdy.load",
+    "${faster_apache::params::mod_dir}/spdy.conf",
+    "${faster_apache::params::mod_dir}/php5filter.conf"
   ] :
     purge => false,
   }
 
-  if $nyholm::faster_apache::params::mod_enable_dir != undef {
+  if $faster_apache::params::mod_enable_dir != undef {
     file { [
-      "${nyholm::faster_apache::params::mod_enable_dir}/spdy.load",
-      "${nyholm::faster_apache::params::mod_enable_dir}/spdy.conf",
-      "${nyholm::faster_apache::params::mod_enable_dir}/php5filter.conf"
+      "${faster_apache::params::mod_enable_dir}/spdy.load",
+      "${faster_apache::params::mod_enable_dir}/spdy.conf",
+      "${faster_apache::params::mod_enable_dir}/php5filter.conf"
     ] :
       purge => false,
     }
   }
 
-  file { "${nyholm::faster_apache::params::confd_dir}/spdy.conf":
-    content => template("nyholm/spdy/spdy_conf.erb"),
+  file { "${faster_apache::params::confd_dir}/spdy.conf":
+    content => template("faster_apache/spdy/spdy_conf.erb"),
     ensure  => $ensure,
     purge   => false,
     require => Package[$package]
   }
 
   file { '/usr/local/bin/php-wrapper':
-    content => template("nyholm/spdy/php-wrapper.erb"),
+    content => template("faster_apache/spdy/php-wrapper.erb"),
     ensure  => $ensure,
     mode    => 0775,
     purge   => false,

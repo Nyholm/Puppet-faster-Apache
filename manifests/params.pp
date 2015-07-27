@@ -1,4 +1,4 @@
-class nyholm::faster_apache::params {
+class faster_apache::params {
 
   #Apache stuff
   if $::osfamily == 'Debian' {

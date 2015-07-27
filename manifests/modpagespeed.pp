@@ -1,8 +1,8 @@
 # This depends on puppetlabs/apache: https://github.com/puppetlabs/puppetlabs-apache
 
-class nyholm::faster_apache::modpagespeed (
-  $url     = $nyholm::faster_apache::params::apache_mod_pagespeed_url,
-  $package = $nyholm::faster_apache::params::apache_mod_pagespeed_package,
+class faster_apache::modpagespeed (
+  $url     = $faster_apache::params::apache_mod_pagespeed_url,
+  $package = $faster_apache::params::apache_mod_pagespeed_package,
   $ensure  = 'present'
 ) {
 
@@ -32,17 +32,17 @@ class nyholm::faster_apache::modpagespeed (
   }
 
   file { [
-    "${nyholm::faster_apache::params::mod_dir}/pagespeed.load",
-    "${nyholm::faster_apache::params::mod_dir}/pagespeed.conf",
-    "${nyholm::faster_apache::params::confd_dir}/pagespeed_libraries.conf"
+    "${faster_apache::params::mod_dir}/pagespeed.load",
+    "${faster_apache::params::mod_dir}/pagespeed.conf",
+    "${faster_apache::params::confd_dir}/pagespeed_libraries.conf"
   ] :
     purge => false,
   }
 
-  if $nyholm::faster_apache::params::mod_enable_dir != undef {
+  if $faster_apache::params::mod_enable_dir != undef {
     file { [
-      "${nyholm::faster_apache::params::mod_enable_dir}/pagespeed.load",
-      "${nyholm::faster_apache::params::mod_enable_dir}/pagespeed.conf"
+      "${faster_apache::params::mod_enable_dir}/pagespeed.load",
+      "${faster_apache::params::mod_enable_dir}/pagespeed.conf"
     ] :
       purge => false,
     }
